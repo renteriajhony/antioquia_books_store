@@ -7,7 +7,9 @@ class BooksProvider extends ChangeNotifier {
   List<Book> booksList = [];
 
   getBooks({String search = 'new'}) async {
-    final resp = await StoreApi.httpGet(search);
+    String path = search == 'new' ? 'new' : 'search/$search';
+    final resp = await StoreApi.httpGet(path);
+    print(resp);
     booksList = [...BooksResponse.fromMap(resp).books];
     notifyListeners();
   }

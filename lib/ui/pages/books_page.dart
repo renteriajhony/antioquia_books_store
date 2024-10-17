@@ -3,14 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../../providers/books_provider.dart';
 
-class BooksPage extends StatefulWidget {
+class BooksPage extends StatelessWidget {
   const BooksPage({super.key});
 
-  @override
-  State<BooksPage> createState() => _BooksPageState();
-}
-
-class _BooksPageState extends State<BooksPage> {
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context, listen: false);

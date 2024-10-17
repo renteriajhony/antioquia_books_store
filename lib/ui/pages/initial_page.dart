@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/book.dart';
+import 'package:antioquia_bookstore/ui/widgets/custom_search_bar.dart';
+
 import '../../providers/books_provider.dart';
 import 'books_page.dart';
 
@@ -13,17 +15,32 @@ class InitialPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => BooksProvider(),
       child: Builder(builder: (context) {
-        final booksProvider = Provider.of<BooksProvider>(context);
-        booksProvider.getBooks();
+        final booksProvider = Provider.of<BooksProvider>(context, listen: true);
+        // booksProvider.getBooks();
         final booksList = booksProvider.booksList;
         return Scaffold(
-          body: Container(
-            color: ThemeData.light(useMaterial3: true).canvasColor,
-            child: booksList.isNotEmpty
-                ? const BooksPage()
-                : const Center(
-                    child: CircularProgressIndicator(),
+          appBar: AppBar(
+            title: const Text('Libreria Antioquia'),
+          ),
+          body: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                const CustomSearchBar(),
+                Expanded(
+                  child: PageView(
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      booksList.isNotEmpty
+                          ? const BooksPage()
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                    ],
                   ),
+                ),
+              ],
+            ),
           ),
         );
       }),
