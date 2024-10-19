@@ -12,32 +12,34 @@ class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context, listen: true);
-    return ChangeNotifierProvider(
-      create: (context) => BooksProvider(),
-      lazy: false,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Libreria Antioquia'),
-        ),
-        body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: [
-              const CustomSearchBar(),
-              Expanded(
-                child: PageView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    booksProvider.isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : const BooksPage()
-                  ],
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Libreria Antioquia'),
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            const CustomSearchBar(),
+            Expanded(
+              child: PageView(
+                scrollDirection: Axis.vertical,
+                children: [
+                  (booksProvider.isLoading && booksProvider.books.isEmpty)
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.red,
+                          ),
+                        )
+                      : booksProvider.books.isEmpty
+                          ? const Center(
+                              child: Text('Sin libros'),
+                            )
+                          : const BooksPage()
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

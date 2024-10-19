@@ -20,7 +20,7 @@ class BooksPage extends StatelessWidget {
             itemBuilder: (context, index) {
               if (index == booksProvider.books.length ||
                   (booksProvider.isLoading && booksProvider.books.isEmpty)) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator(color: Colors.amber,));
               }
               return ListTile(
                 title: Text(booksProvider.books[index].title),
