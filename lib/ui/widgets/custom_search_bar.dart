@@ -19,7 +19,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           builder: (BuildContext context, SearchController controller) {
             return SearchBar(
               controller: controller,
-              padding: const MaterialStatePropertyAll<EdgeInsets>(
+              padding: const WidgetStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 16.0)),
               onTap: () {
                 controller.openView();
@@ -32,11 +32,9 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                 Tooltip(
                   message: 'Change brightness mode',
                   child: IconButton(
-                    isSelected: false, // isDark,
+                    isSelected: false,
                     onPressed: () {
                       setState(() {
-                        // isDark = !isDark;
-                        print(controller.text);
                         Provider.of<BooksProvider>(context, listen: false)
                             .getBooks(search: controller.text);
                       });

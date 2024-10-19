@@ -8,11 +8,8 @@ class StoreApi {
   static void configureDio() {
     // Base url
     _dio.options.baseUrl = 'https://api.itbook.store/1.0/';
-
     // Configurar Headres
-    _dio.options.headers = {
-      // 'x-token': LocalStorage.prefs.get('token') ?? '',
-    };
+    _dio.options.headers = {};
   }
 
   static Future<Map<String, dynamic>> httpGet(String path) async {
@@ -20,7 +17,6 @@ class StoreApi {
       final resp = await _dio.get(path);
       return resp.data;
     } on DioException catch (e) {
-      print(e.error);
       throw HttpException('Error get $e');
     }
   }

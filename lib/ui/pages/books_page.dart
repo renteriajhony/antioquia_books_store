@@ -8,19 +8,29 @@ class BooksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final booksProvider = Provider.of<BooksProvider>(context, listen: false);
+    final booksProvider = Provider.of<BooksProvider>(context, listen: true);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Books Page'),
-      ),
-      body: Container(
-        constraints: const BoxConstraints.expand(),
-        child: Center(
-          child: Text(
-            'Books ${booksProvider.booksList.length}',
-            style: const TextStyle(fontSize: 30),
+      appBar: AppBar(title: const Text('Books')),
+      body: Stack(
+        children: [
+          ListView.builder(
+            controller: booksProvider.scrollController,
+            itemCount: booksProvider.books.length +
+                (booksProvider.hasMorePages ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index == booksProvider.books.length ||
+                  (booksProvider.isLoading && booksProvider.books.isEmpty)) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return ListTile(
+                title: Text(booksProvider.books[index].title),
+                subtitle: Text(booksProvider.books[index].subtitle),
+                leading: Image.network(booksProvider.books[index].image),
+                isThreeLine: true,
+              );
+            },
           ),
-        ),
+        ],
       ),
     );
   }
