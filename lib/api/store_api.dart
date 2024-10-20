@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class StoreApi {
-  static final Dio _dio = Dio();
+  static late final Dio _dio;
 
-  static void configureDio() {
-    // Base url
+  void configureDio({Dio? dio}) {
+    _dio = dio ?? Dio();
     _dio.options.baseUrl = 'https://api.itbook.store/1.0/';
-    // Configurar Headres
     _dio.options.headers = {};
   }
 
-  static Future<Map<String, dynamic>> httpGet(String path) async {
+  Future<Map<String, dynamic>> httpGet(String path) async {
     try {
       final resp = await _dio.get(path);
       return resp.data;

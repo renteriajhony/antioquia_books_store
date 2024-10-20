@@ -44,7 +44,7 @@ class BooksProvider extends ChangeNotifier {
         : 'search/$search/$_currentPage';
 
     try {
-      final resp = await StoreApi.httpGet(path);
+      final resp = await StoreApi().httpGet(path);
       _booksResponse = BooksResponse.fromMap(resp);
       _total = totalItems;
       if (_total > 0) {
@@ -66,7 +66,7 @@ class BooksProvider extends ChangeNotifier {
     String path = 'books/$isbn13';
     _bookDetailResponse = BookDetailResponse(isbn13: isbn13);
     try {
-      final resp = await StoreApi.httpGet(path);
+      final resp = await StoreApi().httpGet(path);
       _bookDetailResponse = BookDetailResponse.fromMap(resp);
     } catch (e) {
       log(e.toString(), name: 'getBookDetail Error');

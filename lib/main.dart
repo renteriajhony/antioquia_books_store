@@ -7,7 +7,8 @@ import 'providers/books_provider.dart';
 import 'ui/pages/initial_page.dart';
 
 void main() {
-  StoreApi.configureDio();
+  StoreApi storeApi = StoreApi();
+  storeApi.configureDio();
   runApp(const AppState());
 }
 

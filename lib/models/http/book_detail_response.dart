@@ -37,44 +37,6 @@ class BookDetailResponse {
   String? url;
   Map<String, String>? pdf;
 
-  BookDetailResponse copyWith({
-    String? error,
-    String? title,
-    String? subtitle,
-    String? authors,
-    String? publisher,
-    String? language,
-    String? isbn10,
-    String? isbn13,
-    String? pages,
-    String? year,
-    String? rating,
-    String? desc,
-    String? price,
-    String? image,
-    String? url,
-    Map<String, String>? pdf,
-  }) {
-    return BookDetailResponse(
-      error: error ?? this.error,
-      title: title ?? this.title,
-      subtitle: subtitle ?? this.subtitle,
-      authors: authors ?? this.authors,
-      publisher: publisher ?? this.publisher,
-      language: language ?? this.language,
-      isbn10: isbn10 ?? this.isbn10,
-      isbn13: isbn13 ?? this.isbn13,
-      pages: pages ?? this.pages,
-      year: year ?? this.year,
-      rating: rating ?? this.rating,
-      desc: desc ?? this.desc,
-      price: price ?? this.price,
-      image: image ?? this.image,
-      url: url ?? this.url,
-      pdf: pdf ?? this.pdf,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'error': error,
