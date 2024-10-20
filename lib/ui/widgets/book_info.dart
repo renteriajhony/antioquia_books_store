@@ -24,6 +24,7 @@ class BookInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RichText(
+                key: const Key('rich_text_author'),
                 text: TextSpan(
                   text: 'Autor: ',
                   style: DefaultTextStyle.of(context).style,

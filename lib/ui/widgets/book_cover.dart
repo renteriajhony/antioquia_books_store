@@ -22,11 +22,13 @@ class BookCover extends StatelessWidget {
           children: [
             Hero(
               tag: book.isbn13,
-              child: Image.network(
-                alignment: Alignment.topLeft,
-                width: double.infinity,
-                book.image,
-              ),
+              child: book.image.contains('http')
+                  ? Image.network(
+                      alignment: Alignment.topLeft,
+                      width: double.infinity,
+                      book.image,
+                    )
+                  : const SizedBox(),
             ),
             SizedBox(
               width: 150,

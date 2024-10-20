@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">2.9&nbsp;%</td>
+            <td class="headerCovTableEntryLo">31.4&nbsp;%</td>
             <td class="headerCovTableEntry">35</td>
-            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">11</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-20 13:48:42</td>
+            <td class="headerValue">2024-10-20 17:22:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -68,25 +68,25 @@
 <span id="L6"><span class="lineNum">       6</span>              : class CustomSearchBar extends StatefulWidget {</span>
 <span id="L7"><span class="lineNum">       7</span> <span class="tlaGNC tlaBgGNC">           1 :   const CustomSearchBar({super.key});</span></span>
 <span id="L8"><span class="lineNum">       8</span>              : </span>
-<span id="L9"><span class="lineNum">       9</span> <span class="tlaUNC tlaBgUNC">           0 :   @override</span></span>
-<span id="L10"><span class="lineNum">      10</span> <span class="tlaUNC">           0 :   State&lt;CustomSearchBar&gt; createState() =&gt; _CustomSearchBarState();</span></span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">           1 :   @override</span></span>
+<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">           1 :   State&lt;CustomSearchBar&gt; createState() =&gt; _CustomSearchBarState();</span></span>
 <span id="L11"><span class="lineNum">      11</span>              : }</span>
 <span id="L12"><span class="lineNum">      12</span>              : </span>
 <span id="L13"><span class="lineNum">      13</span>              : class _CustomSearchBarState extends State&lt;CustomSearchBar&gt; {</span>
 <span id="L14"><span class="lineNum">      14</span>              :   final List&lt;String&gt; _suggestions = [];</span>
 <span id="L15"><span class="lineNum">      15</span>              : </span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaUNC">           0 :   @override</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">           1 :   @override</span></span>
 <span id="L17"><span class="lineNum">      17</span>              :   Widget build(BuildContext context) {</span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaUNC">           0 :     return Padding(</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">           1 :     return Padding(</span></span>
 <span id="L19"><span class="lineNum">      19</span>              :       padding: const EdgeInsets.all(8.0),</span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaUNC">           0 :       child: SearchAnchor(</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           1 :       child: SearchAnchor(</span></span>
 <span id="L21"><span class="lineNum">      21</span>              :         isFullScreen: false,</span>
-<span id="L22"><span class="lineNum">      22</span> <span class="tlaUNC">           0 :         builder: (BuildContext context, SearchController controller) {</span></span>
-<span id="L23"><span class="lineNum">      23</span> <span class="tlaUNC">           0 :           return SearchBar(</span></span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           1 :         builder: (BuildContext context, SearchController controller) {</span></span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           1 :           return SearchBar(</span></span>
 <span id="L24"><span class="lineNum">      24</span>              :             controller: controller,</span>
 <span id="L25"><span class="lineNum">      25</span>              :             padding: const WidgetStatePropertyAll&lt;EdgeInsets&gt;(</span>
 <span id="L26"><span class="lineNum">      26</span>              :                 EdgeInsets.symmetric(horizontal: 16.0)),</span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaUNC">           0 :             onTap: () {</span></span>
+<span id="L27"><span class="lineNum">      27</span> <span class="tlaUNC tlaBgUNC">           0 :             onTap: () {</span></span>
 <span id="L28"><span class="lineNum">      28</span> <span class="tlaUNC">           0 :               controller.openView();</span></span>
 <span id="L29"><span class="lineNum">      29</span>              :             },</span>
 <span id="L30"><span class="lineNum">      30</span> <span class="tlaUNC">           0 :             onSubmitted: (event) {</span></span>
@@ -96,12 +96,12 @@
 <span id="L34"><span class="lineNum">      34</span>              :               });</span>
 <span id="L35"><span class="lineNum">      35</span>              :             },</span>
 <span id="L36"><span class="lineNum">      36</span>              :             leading: const Icon(Icons.search),</span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaUNC">           0 :             trailing: &lt;Widget&gt;[</span></span>
-<span id="L38"><span class="lineNum">      38</span> <span class="tlaUNC">           0 :               Tooltip(</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC tlaBgGNC">           1 :             trailing: &lt;Widget&gt;[</span></span>
+<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">           1 :               Tooltip(</span></span>
 <span id="L39"><span class="lineNum">      39</span>              :                 message: 'Search',</span>
-<span id="L40"><span class="lineNum">      40</span> <span class="tlaUNC">           0 :                 child: IconButton(</span></span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">           1 :                 child: IconButton(</span></span>
 <span id="L41"><span class="lineNum">      41</span>              :                   isSelected: false,</span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaUNC">           0 :                   onPressed: () {</span></span>
+<span id="L42"><span class="lineNum">      42</span> <span class="tlaUNC tlaBgUNC">           0 :                   onPressed: () {</span></span>
 <span id="L43"><span class="lineNum">      43</span> <span class="tlaUNC">           0 :                     setState(() {</span></span>
 <span id="L44"><span class="lineNum">      44</span> <span class="tlaUNC">           0 :                       _onSearch(controller.text);</span></span>
 <span id="L45"><span class="lineNum">      45</span>              :                     });</span>

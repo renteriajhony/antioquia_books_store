@@ -27,7 +27,9 @@ class BookDetailPage extends StatelessWidget {
                 width: double.infinity,
                 height: 300,
                 color: Colors.black12,
-                child: Image.network(book.image),
+                child: book.image.contains('http')
+                    ? Image.network(book.image)
+                    : const SizedBox(),
               ),
             ),
             const SizedBox(height: 20),

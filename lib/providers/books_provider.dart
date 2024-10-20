@@ -61,7 +61,6 @@ class BooksProvider extends ChangeNotifier {
 
   Future<void> getBookDetail(String isbn13) async {
     _isLoading = true;
-    // notifyListeners();
 
     String path = 'books/$isbn13';
     _bookDetailResponse = BookDetailResponse(isbn13: isbn13);

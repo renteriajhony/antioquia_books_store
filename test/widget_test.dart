@@ -6,8 +6,14 @@
 // tree, read text, and verify that the values of widget properties are correct.
 import './models/model_test.dart' as model;
 import './api/store_api_test.dart' as api;
+import './ui/pages/pages.dart' as pages;
+import './ui/widgets/widgets.dart' as widgets;
+import './providers/books_provider_test.dart' as providers;
 
 void main() {
   model.main();
   api.main();
+  pages.main();
+  widgets.main();
+  providers.main();
 }
