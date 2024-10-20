@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/http/book_detail_response.dart';
 import '../../providers/books_provider.dart';
@@ -122,6 +124,24 @@ class BookInfo extends StatelessWidget {
                     ],
                   ),
                 ),
+              const SizedBox(height: 10),
+              RichText(
+                text: TextSpan(
+                  text: 'Url: ',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: bookDetailResponse.url ?? '',
+                      style: const TextStyle(color: Colors.blue),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          launchUrl(Uri(path: bookDetailResponse.url));
+                        },
+                    ),
+                  ],
+                ),
+              ),
             ],
           );
         }
