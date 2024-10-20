@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/http/book_detail_response.dart';
-import '../../providers/books_provider.dart';
+import '../../antioquia_bookstore.dart';
 
 class BookInfo extends StatelessWidget {
   const BookInfo({super.key});

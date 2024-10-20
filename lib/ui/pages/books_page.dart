@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/books_provider.dart';
-import '../widgets/book_cover.dart';
+import '../../antioquia_bookstore.dart';
+
 
 class BooksPage extends StatelessWidget {
   const BooksPage({super.key});

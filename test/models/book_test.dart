@@ -56,7 +56,7 @@ void main() {
     });
 
     test('fromJson creates a Book instance from a JSON string', () {
-      final json =
+      const json =
           '{"title":"title","subtitle":"subtitle","isbn13":"isbn13","price":"price","image":"image","url":"url"}';
       final book = Book.fromJson(json);
       expect(book.title, 'title');

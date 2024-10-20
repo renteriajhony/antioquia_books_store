@@ -1,8 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../../models/book.dart';
-import '../pages/book_detail_page.dart';
+import '../../antioquia_bookstore.dart';
 
 class BookCover extends StatelessWidget {
   const BookCover({

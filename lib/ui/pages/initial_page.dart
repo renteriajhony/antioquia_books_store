@@ -1,11 +1,8 @@
-import 'package:antioquia_bookstore/ui/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:antioquia_bookstore/ui/widgets/custom_search_bar.dart';
+import '../../antioquia_bookstore.dart';
 
-import '../../providers/books_provider.dart';
-import 'books_page.dart';
 
 class InitialPage extends StatelessWidget {
   const InitialPage({super.key});

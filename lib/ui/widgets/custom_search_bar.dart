@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/books_provider.dart';
+
+import '../../antioquia_bookstore.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key});
