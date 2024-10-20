@@ -2,18 +2,66 @@
 
 A new Flutter project.
 
-## Getting Started
+## Reto tecnico
+La Librería de Antioquia requiere ofrecer a sus clientes una aplicación móvil para la búsqueda de libros de tecnología.
 
-This project is a starting point for a Flutter application.
+ 
 
-A few resources to get you started if this is your first Flutter project:
+Esta debe tener las siguientes funcionalidades:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Poseer un buscador donde se ingrese el nombre del libro a consultar.
+
+Mostrar el listado de libros encontrados.
+
+Al seleccionar un libro de la lista, debe presentar el detalle de este junto a la imagen asociada.
+
+Almacenar en memoria caché las 5 últimas búsquedas para agilizar la consulta. No implica guardar el listado, solo el criterio o tecnología, ej: php
+
+ 
+
+Realizar un diseño de la arquitectura propuesta para la aplicación teniendo en cuenta una arquitectura en nube (preferiblemente componentes en AWS) y donde se tuviera que construir el back que soporta la información de los libros y expone las apis que permiten resolver las funcionalidades mencionadas en los puntos anteriores.
+
+ 
+
+Implementar la aplicación en flutter utilizando arquitectura limpia y pruebas unitarias (por lo menos un 30 o 40% de cobertura).
+
+ 
+
+La API establecida para las consultas se encuentra descrita en https://api.itbook.store/
+
+  
+
+A considerar: Se evalúa buenas prácticas de desarrollo.
+
+ 
+
+Por favor indicar la url del repositorio Git para la revisión de esta.
+
+## Github
+
+[Repositorio para clonar app ](https://github.com/renteriajhony/antioquia_books_store)
+
+## Run App
+```bash
+flutter run
+```
+
+## Unit test
+### Required lcov 
+
+```bash
+# On macos 
+brew install lcov  
+# On windows 
+sudo apt-get update sudo apt-get install lcov
+```
+
+### Run unit test
+```bash
+flutter test --coverage test/widget_test.dart && genhtml coverage/lcov.info -o coverage/html && open coverage/html/index.html
+```
 
 
 ### Books Response
