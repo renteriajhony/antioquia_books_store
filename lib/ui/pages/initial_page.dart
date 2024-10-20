@@ -1,3 +1,4 @@
+import 'package:antioquia_bookstore/ui/widgets/book_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
