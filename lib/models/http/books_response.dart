@@ -18,20 +18,6 @@ class BooksResponse {
     this.page,
   });
 
-  BooksResponse copyWith({
-    List<Book>? books,
-    String? error,
-    String? total,
-    String? page,
-  }) {
-    return BooksResponse(
-      books: books ?? this.books,
-      error: error ?? this.error,
-      total: total ?? this.total,
-      page: page ?? this.page,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'books': books.map((x) => x.toMap()).toList(),
@@ -58,24 +44,4 @@ class BooksResponse {
 
   factory BooksResponse.fromJson(String source) =>
       BooksResponse.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'BooksResponse(books: $books, error: $error, total: $total, page: $page)';
-  }
-
-  @override
-  bool operator ==(covariant BooksResponse other) {
-    if (identical(this, other)) return true;
-
-    return listEquals(other.books, books) &&
-        other.error == error &&
-        other.total == total &&
-        other.page == page;
-  }
-
-  @override
-  int get hashCode {
-    return books.hashCode ^ error.hashCode ^ total.hashCode ^ page.hashCode;
-  }
 }

@@ -17,26 +17,6 @@ class Book {
   final String image;
   final String url;
 
-  
-
-  Book copyWith({
-    String? title,
-    String? subtitle,
-    String? isbn13,
-    String? price,
-    String? image,
-    String? url,
-  }) {
-    return Book(
-      title: title ?? this.title,
-      subtitle: subtitle ?? this.subtitle,
-      isbn13: isbn13 ?? this.isbn13,
-      price: price ?? this.price,
-      image: image ?? this.image,
-      url: url ?? this.url,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'title': title,
@@ -61,10 +41,6 @@ class Book {
 
   String toJson() => json.encode(toMap());
 
-  factory Book.fromJson(String source) => Book.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'Book(title: $title, subtitle: $subtitle, isbn13: $isbn13, price: $price, image: $image, url: $url)';
-  }
+  factory Book.fromJson(String source) =>
+      Book.fromMap(json.decode(source) as Map<String, dynamic>);
 }

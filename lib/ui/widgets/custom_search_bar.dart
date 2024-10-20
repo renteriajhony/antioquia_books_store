@@ -35,7 +35,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             leading: const Icon(Icons.search),
             trailing: <Widget>[
               Tooltip(
-                message: 'Change brightness mode',
+                message: 'Search',
                 child: IconButton(
                   isSelected: false,
                   onPressed: () {

@@ -97,19 +97,21 @@ class BookInfo extends StatelessWidget {
                         ],
                       ),
                     ),
-                    RichText(
-                      text: TextSpan(
-                        text: 'Precio: ',
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: bookDetailResponse.price ?? '',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
                   ]),
+              RichText(
+                text: TextSpan(
+                  text: 'Precio: ',
+                  style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: bookDetailResponse.price ?? '',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        )),
+                  ],
+                ),
+              ),
               const SizedBox(height: 10),
               if (bookDetailResponse.desc != null)
                 RichText(
@@ -136,7 +138,9 @@ class BookInfo extends StatelessWidget {
                       style: const TextStyle(color: Colors.blue),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          launchUrl(Uri(path: bookDetailResponse.url));
+                          String url = bookDetailResponse.url ?? '';
+                          Uri uri = Uri.parse(url);
+                          launchUrl(uri);
                         },
                     ),
                   ],
