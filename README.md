@@ -43,6 +43,13 @@ Por favor indicar la url del repositorio Git para la revisión de esta.
 
 [Repositorio para clonar app ](https://github.com/renteriajhony/antioquia_books_store)
 
+![alt text](https://github.com/renteriajhony/antioquia_books_store/blob/main/resource/1.png?raw=true)
+
+![alt text](https://github.com/renteriajhony/antioquia_books_store/blob/main/resource/2.png?raw=true)
+
+![alt text](https://github.com/renteriajhony/antioquia_books_store/blob/main/resource/6.png?raw=true)
+
+
 ## Run App
 ```bash
 flutter run
