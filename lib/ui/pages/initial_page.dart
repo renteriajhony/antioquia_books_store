@@ -33,8 +33,28 @@ class InitialPage extends StatelessWidget {
                           ),
                         )
                       : booksProvider.books.isEmpty
-                          ? const Center(
-                              child: Text('Sin libros'),
+                          ? Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/nada.png',
+                                    width: double.infinity,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Text(
+                                    'No se encontraron libros',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
                             )
                           : const BooksPage()
                 ],
