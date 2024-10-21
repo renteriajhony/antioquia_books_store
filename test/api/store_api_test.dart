@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:antioquia_bookstore/api/store_api.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart'; // Ajusta el import según tu estructura
@@ -13,7 +14,8 @@ void main() {
   late MockDio mockDio;
   late BaseOptions mockOptions;
 
-  setUpAll(() {
+  setUpAll(() async {
+    await dotenv.load(fileName: ".env");
     storeApi = StoreApi();
     mockDio = MockDio();
     mockOptions = BaseOptions();

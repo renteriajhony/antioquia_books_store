@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-21 14:09:04</td>
+            <td class="headerValue">2024-10-21 17:04:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -62,95 +62,92 @@
 <pre class="source">
 <span id="L1"><span class="lineNum">       1</span>              : import 'dart:developer';</span>
 <span id="L2"><span class="lineNum">       2</span>              : </span>
-<span id="L3"><span class="lineNum">       3</span>              : import 'package:antioquia_bookstore/api/store_api.dart';</span>
-<span id="L4"><span class="lineNum">       4</span>              : import 'package:antioquia_bookstore/models/book.dart';</span>
-<span id="L5"><span class="lineNum">       5</span>              : import 'package:antioquia_bookstore/models/http/book_detail_response.dart';</span>
-<span id="L6"><span class="lineNum">       6</span>              : import 'package:antioquia_bookstore/models/http/books_response.dart';</span>
-<span id="L7"><span class="lineNum">       7</span>              : import 'package:flutter/material.dart';</span>
-<span id="L8"><span class="lineNum">       8</span>              : </span>
-<span id="L9"><span class="lineNum">       9</span>              : class BooksProvider extends ChangeNotifier {</span>
-<span id="L10"><span class="lineNum">      10</span>              :   BooksResponse? _booksResponse;</span>
-<span id="L11"><span class="lineNum">      11</span>              :   late BookDetailResponse _bookDetailResponse;</span>
-<span id="L12"><span class="lineNum">      12</span>              :   List&lt;Book&gt; _books = [];</span>
-<span id="L13"><span class="lineNum">      13</span>              :   bool _isLoading = false;</span>
-<span id="L14"><span class="lineNum">      14</span>              :   int _currentPage = 1;</span>
-<span id="L15"><span class="lineNum">      15</span>              :   String _currentSearch = 'new';</span>
-<span id="L16"><span class="lineNum">      16</span>              :   int _total = 0;</span>
-<span id="L17"><span class="lineNum">      17</span>              : </span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC tlaBgGNC">           2 :   List&lt;Book&gt; get books =&gt; _books;</span></span>
-<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           2 :   bool get isLoading =&gt; _isLoading;</span></span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           5 :   bool get hasMorePages =&gt; _books.length &lt; _total;</span></span>
-<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">           3 :   int get totalItems =&gt; int.parse(_booksResponse?.total ?? '0');</span></span>
-<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           2 :   BookDetailResponse get bookDetailResponse =&gt; _bookDetailResponse;</span></span>
-<span id="L23"><span class="lineNum">      23</span>              : </span>
-<span id="L24"><span class="lineNum">      24</span>              :   final ScrollController scrollController = ScrollController();</span>
-<span id="L25"><span class="lineNum">      25</span>              : </span>
-<span id="L26"><span class="lineNum">      26</span> <span class="tlaGNC">           1 :   BooksProvider() {</span></span>
-<span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           3 :     scrollController.addListener(_scrollListener);</span></span>
-<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">           1 :     getBooks();</span></span>
-<span id="L29"><span class="lineNum">      29</span>              :   }</span>
-<span id="L30"><span class="lineNum">      30</span>              : </span>
-<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">           1 :   Future&lt;void&gt; getBooks({String search = 'new'}) async {</span></span>
-<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">           1 :     if (_isLoading) return;</span></span>
-<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">           1 :     _isLoading = true;</span></span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">           1 :     notifyListeners();</span></span>
-<span id="L35"><span class="lineNum">      35</span>              : </span>
-<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">           2 :     if (search != _currentSearch) {</span></span>
-<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">           2 :       _books = [];</span></span>
-<span id="L38"><span class="lineNum">      38</span> <span class="tlaGNC">           1 :       _currentSearch = search;</span></span>
-<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           1 :       _currentPage = 1;</span></span>
-<span id="L40"><span class="lineNum">      40</span>              :     }</span>
-<span id="L41"><span class="lineNum">      41</span>              : </span>
-<span id="L42"><span class="lineNum">      42</span> <span class="tlaGNC">           2 :     String path = (search == '' || search == 'new')</span></span>
-<span id="L43"><span class="lineNum">      43</span>              :         ? 'new'</span>
-<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">           2 :         : 'search/$search/$_currentPage';</span></span>
-<span id="L45"><span class="lineNum">      45</span>              : </span>
-<span id="L46"><span class="lineNum">      46</span>              :     try {</span>
-<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">           2 :       final resp = await StoreApi().httpGet(path);</span></span>
-<span id="L48"><span class="lineNum">      48</span> <span class="tlaUNC tlaBgUNC">           0 :       _booksResponse = BooksResponse.fromMap(resp);</span></span>
-<span id="L49"><span class="lineNum">      49</span> <span class="tlaUNC">           0 :       _total = totalItems;</span></span>
-<span id="L50"><span class="lineNum">      50</span> <span class="tlaUNC">           0 :       if (_total &gt; 0) {</span></span>
-<span id="L51"><span class="lineNum">      51</span> <span class="tlaUNC">           0 :         _books.addAll(_booksResponse?.books ?? []);</span></span>
-<span id="L52"><span class="lineNum">      52</span> <span class="tlaUNC">           0 :         _currentPage++;</span></span>
-<span id="L53"><span class="lineNum">      53</span>              :       }</span>
-<span id="L54"><span class="lineNum">      54</span>              :     } catch (e) {</span>
-<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC tlaBgGNC">           2 :       _books = [];</span></span>
-<span id="L56"><span class="lineNum">      56</span>              :     }</span>
-<span id="L57"><span class="lineNum">      57</span>              : </span>
-<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">           1 :     _isLoading = false;</span></span>
-<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">           1 :     notifyListeners();</span></span>
-<span id="L60"><span class="lineNum">      60</span>              :   }</span>
+<span id="L3"><span class="lineNum">       3</span>              : import 'package:antioquia_bookstore/antioquia_bookstore.dart';</span>
+<span id="L4"><span class="lineNum">       4</span>              : import 'package:flutter/material.dart';</span>
+<span id="L5"><span class="lineNum">       5</span>              : </span>
+<span id="L6"><span class="lineNum">       6</span>              : class BooksProvider extends ChangeNotifier {</span>
+<span id="L7"><span class="lineNum">       7</span>              :   BooksResponse? _booksResponse;</span>
+<span id="L8"><span class="lineNum">       8</span>              :   late BookDetailResponse _bookDetailResponse;</span>
+<span id="L9"><span class="lineNum">       9</span>              :   List&lt;Book&gt; _books = [];</span>
+<span id="L10"><span class="lineNum">      10</span>              :   bool _isLoading = false;</span>
+<span id="L11"><span class="lineNum">      11</span>              :   int _currentPage = 1;</span>
+<span id="L12"><span class="lineNum">      12</span>              :   String _currentSearch = ConstantApp.baseSearch;</span>
+<span id="L13"><span class="lineNum">      13</span>              :   int _total = 0;</span>
+<span id="L14"><span class="lineNum">      14</span>              : </span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC tlaBgGNC">           2 :   List&lt;Book&gt; get books =&gt; _books;</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">           2 :   bool get isLoading =&gt; _isLoading;</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           5 :   bool get hasMorePages =&gt; _books.length &lt; _total;</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">           3 :   int get totalItems =&gt; int.parse(_booksResponse?.total ?? '0');</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           2 :   BookDetailResponse get bookDetailResponse =&gt; _bookDetailResponse;</span></span>
+<span id="L20"><span class="lineNum">      20</span>              : </span>
+<span id="L21"><span class="lineNum">      21</span>              :   final ScrollController scrollController = ScrollController();</span>
+<span id="L22"><span class="lineNum">      22</span>              : </span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           1 :   BooksProvider() {</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaGNC">           3 :     scrollController.addListener(_scrollListener);</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaGNC">           1 :     getBooks();</span></span>
+<span id="L26"><span class="lineNum">      26</span>              :   }</span>
+<span id="L27"><span class="lineNum">      27</span>              : </span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">           1 :   Future&lt;void&gt; getBooks({String search = ConstantApp.baseSearch}) async {</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">           1 :     if (_isLoading) return;</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">           1 :     _isLoading = true;</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">           1 :     notifyListeners();</span></span>
+<span id="L32"><span class="lineNum">      32</span>              : </span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">           2 :     if (search != _currentSearch) {</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">           2 :       _books = [];</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaGNC">           1 :       _currentSearch = search;</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">           1 :       _currentPage = 1;</span></span>
+<span id="L37"><span class="lineNum">      37</span>              :     }</span>
+<span id="L38"><span class="lineNum">      38</span>              : </span>
+<span id="L39"><span class="lineNum">      39</span> <span class="tlaGNC">           2 :     String path = (search == '' || search == ConstantApp.baseSearch)</span></span>
+<span id="L40"><span class="lineNum">      40</span>              :         ? ConstantApp.baseSearch</span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaGNC">           2 :         : '${ConstantApp.apiTag}/$search/$_currentPage';</span></span>
+<span id="L42"><span class="lineNum">      42</span>              : </span>
+<span id="L43"><span class="lineNum">      43</span>              :     try {</span>
+<span id="L44"><span class="lineNum">      44</span> <span class="tlaGNC">           2 :       final resp = await StoreApi().httpGet(path);</span></span>
+<span id="L45"><span class="lineNum">      45</span> <span class="tlaUNC tlaBgUNC">           0 :       _booksResponse = BooksResponse.fromMap(resp);</span></span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaUNC">           0 :       _total = totalItems;</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaUNC">           0 :       if (_total &gt; 0) {</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaUNC">           0 :         _books.addAll(_booksResponse?.books ?? []);</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaUNC">           0 :         _currentPage++;</span></span>
+<span id="L50"><span class="lineNum">      50</span>              :       }</span>
+<span id="L51"><span class="lineNum">      51</span>              :     } catch (e) {</span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC tlaBgGNC">           2 :       _books = [];</span></span>
+<span id="L53"><span class="lineNum">      53</span>              :     }</span>
+<span id="L54"><span class="lineNum">      54</span>              : </span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaGNC">           1 :     _isLoading = false;</span></span>
+<span id="L56"><span class="lineNum">      56</span> <span class="tlaGNC">           1 :     notifyListeners();</span></span>
+<span id="L57"><span class="lineNum">      57</span>              :   }</span>
+<span id="L58"><span class="lineNum">      58</span>              : </span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">           1 :   Future&lt;void&gt; getBookDetail(String isbn13) async {</span></span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaGNC">           1 :     _isLoading = true;</span></span>
 <span id="L61"><span class="lineNum">      61</span>              : </span>
-<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">           1 :   Future&lt;void&gt; getBookDetail(String isbn13) async {</span></span>
-<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">           1 :     _isLoading = true;</span></span>
-<span id="L64"><span class="lineNum">      64</span>              : </span>
-<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">           1 :     String path = 'books/$isbn13';</span></span>
-<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">           2 :     _bookDetailResponse = BookDetailResponse(isbn13: isbn13);</span></span>
-<span id="L67"><span class="lineNum">      67</span>              :     try {</span>
-<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">           2 :       final resp = await StoreApi().httpGet(path);</span></span>
-<span id="L69"><span class="lineNum">      69</span> <span class="tlaUNC tlaBgUNC">           0 :       _bookDetailResponse = BookDetailResponse.fromMap(resp);</span></span>
-<span id="L70"><span class="lineNum">      70</span>              :     } catch (e) {</span>
-<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC tlaBgGNC">           2 :       log(e.toString(), name: 'getBookDetail Error');</span></span>
-<span id="L72"><span class="lineNum">      72</span>              :     }</span>
-<span id="L73"><span class="lineNum">      73</span>              : </span>
-<span id="L74"><span class="lineNum">      74</span> <span class="tlaGNC">           1 :     _isLoading = false;</span></span>
-<span id="L75"><span class="lineNum">      75</span> <span class="tlaGNC">           1 :     notifyListeners();</span></span>
-<span id="L76"><span class="lineNum">      76</span>              :   }</span>
-<span id="L77"><span class="lineNum">      77</span>              : </span>
-<span id="L78"><span class="lineNum">      78</span> <span class="tlaUNC tlaBgUNC">           0 :   void _scrollListener() {</span></span>
-<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :     if (scrollController.position.pixels &gt;=</span></span>
-<span id="L80"><span class="lineNum">      80</span> <span class="tlaUNC">           0 :             scrollController.position.maxScrollExtent - 200 &amp;&amp;</span></span>
-<span id="L81"><span class="lineNum">      81</span> <span class="tlaUNC">           0 :         hasMorePages) {</span></span>
-<span id="L82"><span class="lineNum">      82</span> <span class="tlaUNC">           0 :       getBooks(search: _currentSearch);</span></span>
-<span id="L83"><span class="lineNum">      83</span>              :     }</span>
-<span id="L84"><span class="lineNum">      84</span>              :   }</span>
-<span id="L85"><span class="lineNum">      85</span>              : </span>
-<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC tlaBgGNC">           1 :   @override</span></span>
-<span id="L87"><span class="lineNum">      87</span>              :   void dispose() {</span>
-<span id="L88"><span class="lineNum">      88</span> <span class="tlaGNC">           2 :     scrollController.dispose();</span></span>
-<span id="L89"><span class="lineNum">      89</span> <span class="tlaGNC">           1 :     super.dispose();</span></span>
-<span id="L90"><span class="lineNum">      90</span>              :   }</span>
-<span id="L91"><span class="lineNum">      91</span>              : }</span>
+<span id="L62"><span class="lineNum">      62</span> <span class="tlaGNC">           1 :     String path = 'books/$isbn13';</span></span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">           2 :     _bookDetailResponse = BookDetailResponse(isbn13: isbn13);</span></span>
+<span id="L64"><span class="lineNum">      64</span>              :     try {</span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">           2 :       final resp = await StoreApi().httpGet(path);</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaUNC tlaBgUNC">           0 :       _bookDetailResponse = BookDetailResponse.fromMap(resp);</span></span>
+<span id="L67"><span class="lineNum">      67</span>              :     } catch (e) {</span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC tlaBgGNC">           2 :       log(e.toString(), name: 'getBookDetail Error');</span></span>
+<span id="L69"><span class="lineNum">      69</span>              :     }</span>
+<span id="L70"><span class="lineNum">      70</span>              : </span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">           1 :     _isLoading = false;</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaGNC">           1 :     notifyListeners();</span></span>
+<span id="L73"><span class="lineNum">      73</span>              :   }</span>
+<span id="L74"><span class="lineNum">      74</span>              : </span>
+<span id="L75"><span class="lineNum">      75</span> <span class="tlaUNC tlaBgUNC">           0 :   void _scrollListener() {</span></span>
+<span id="L76"><span class="lineNum">      76</span> <span class="tlaUNC">           0 :     if (scrollController.position.pixels &gt;=</span></span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaUNC">           0 :             scrollController.position.maxScrollExtent - 200 &amp;&amp;</span></span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaUNC">           0 :         hasMorePages) {</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :       getBooks(search: _currentSearch);</span></span>
+<span id="L80"><span class="lineNum">      80</span>              :     }</span>
+<span id="L81"><span class="lineNum">      81</span>              :   }</span>
+<span id="L82"><span class="lineNum">      82</span>              : </span>
+<span id="L83"><span class="lineNum">      83</span> <span class="tlaGNC tlaBgGNC">           1 :   @override</span></span>
+<span id="L84"><span class="lineNum">      84</span>              :   void dispose() {</span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaGNC">           2 :     scrollController.dispose();</span></span>
+<span id="L86"><span class="lineNum">      86</span> <span class="tlaGNC">           1 :     super.dispose();</span></span>
+<span id="L87"><span class="lineNum">      87</span>              :   }</span>
+<span id="L88"><span class="lineNum">      88</span>              : }</span>
         </pre>
               </td>
             </tr>

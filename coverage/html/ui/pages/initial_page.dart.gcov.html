@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryHi">93.3&nbsp;%</td>
+            <td class="headerCovTableEntryHi">93.8&nbsp;%</td>
+            <td class="headerCovTableEntry">16</td>
             <td class="headerCovTableEntry">15</td>
-            <td class="headerCovTableEntry">14</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-21 14:09:04</td>
+            <td class="headerValue">2024-10-21 17:04:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -74,7 +74,7 @@
 <span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">           1 :     final mainProvider = Provider.of&lt;MainProvider&gt;(context, listen: false);</span></span>
 <span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">           1 :     return Scaffold(</span></span>
 <span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">           1 :       appBar: AppBar(</span></span>
-<span id="L15"><span class="lineNum">      15</span>              :         title: const Text('Libreria Antioquia'),</span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">           4 :         title: Text(UiLabelsApp.labelsApp['initialPage']['title']),</span></span>
 <span id="L16"><span class="lineNum">      16</span>              :       ),</span>
 <span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           1 :       body: SizedBox(</span></span>
 <span id="L18"><span class="lineNum">      18</span>              :         width: double.infinity,</span>
@@ -89,12 +89,12 @@
 <span id="L27"><span class="lineNum">      27</span> <span class="tlaGNC">           1 :                 children: [</span></span>
 <span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">           3 :                   (booksProvider.isLoading &amp;&amp; booksProvider.books.isEmpty)</span></span>
 <span id="L29"><span class="lineNum">      29</span>              :                       ? const Center(</span>
-<span id="L30"><span class="lineNum">      30</span>              :                           child: CircularProgressIndicator(</span>
-<span id="L31"><span class="lineNum">      31</span>              :                             color: Colors.red,</span>
-<span id="L32"><span class="lineNum">      32</span>              :                           ),</span>
-<span id="L33"><span class="lineNum">      33</span>              :                         )</span>
-<span id="L34"><span class="lineNum">      34</span> <span class="tlaUNC tlaBgUNC">           0 :                       : booksProvider.books.isEmpty</span></span>
-<span id="L35"><span class="lineNum">      35</span>              :                           ? const Blank(key: Key('blank_page'),)</span>
+<span id="L30"><span class="lineNum">      30</span>              :                           child: CircularProgressIndicator(),</span>
+<span id="L31"><span class="lineNum">      31</span>              :                         )</span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaUNC tlaBgUNC">           0 :                       : booksProvider.books.isEmpty</span></span>
+<span id="L33"><span class="lineNum">      33</span>              :                           ? const Blank(</span>
+<span id="L34"><span class="lineNum">      34</span>              :                               key: Key('blank_page'),</span>
+<span id="L35"><span class="lineNum">      35</span>              :                             )</span>
 <span id="L36"><span class="lineNum">      36</span>              :                           : const BooksPage()</span>
 <span id="L37"><span class="lineNum">      37</span>              :                 ],</span>
 <span id="L38"><span class="lineNum">      38</span>              :               ),</span>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-21 14:09:04</td>
+            <td class="headerValue">2024-10-21 17:04:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -63,25 +63,26 @@
 <span id="L1"><span class="lineNum">       1</span>              : import 'dart:io';</span>
 <span id="L2"><span class="lineNum">       2</span>              : </span>
 <span id="L3"><span class="lineNum">       3</span>              : import 'package:dio/dio.dart';</span>
-<span id="L4"><span class="lineNum">       4</span>              : </span>
-<span id="L5"><span class="lineNum">       5</span>              : class StoreApi {</span>
-<span id="L6"><span class="lineNum">       6</span> <span class="tlaGNC tlaBgGNC">           1 :   static late final Dio _dio;</span></span>
-<span id="L7"><span class="lineNum">       7</span>              : </span>
-<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">           1 :   void configureDio({Dio? dio}) {</span></span>
-<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">           1 :     _dio = dio ?? Dio();</span></span>
-<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">           3 :     _dio.options.baseUrl = 'https://api.itbook.store/1.0/';</span></span>
-<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC">           4 :     _dio.options.headers = {};</span></span>
-<span id="L12"><span class="lineNum">      12</span>              :   }</span>
-<span id="L13"><span class="lineNum">      13</span>              : </span>
-<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">           1 :   Future&lt;Map&lt;String, dynamic&gt;&gt; httpGet(String path) async {</span></span>
-<span id="L15"><span class="lineNum">      15</span>              :     try {</span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">           2 :       final resp = await _dio.get(path);</span></span>
-<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           1 :       return resp.data;</span></span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">           1 :     } on DioException catch (e) {</span></span>
-<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           2 :       throw HttpException('Error get $e');</span></span>
-<span id="L20"><span class="lineNum">      20</span>              :     }</span>
-<span id="L21"><span class="lineNum">      21</span>              :   }</span>
-<span id="L22"><span class="lineNum">      22</span>              : }</span>
+<span id="L4"><span class="lineNum">       4</span>              : import 'package:flutter_dotenv/flutter_dotenv.dart';</span>
+<span id="L5"><span class="lineNum">       5</span>              : </span>
+<span id="L6"><span class="lineNum">       6</span>              : class StoreApi {</span>
+<span id="L7"><span class="lineNum">       7</span> <span class="tlaGNC tlaBgGNC">           1 :   static late final Dio _dio;</span></span>
+<span id="L8"><span class="lineNum">       8</span>              : </span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">           1 :   void configureDio({Dio? dio}) {</span></span>
+<span id="L10"><span class="lineNum">      10</span> <span class="tlaGNC">           1 :     _dio = dio ?? Dio();</span></span>
+<span id="L11"><span class="lineNum">      11</span> <span class="tlaGNC">           6 :     _dio.options.baseUrl = dotenv.env['BASE_URL'] ?? '';</span></span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">           4 :     _dio.options.headers = {};</span></span>
+<span id="L13"><span class="lineNum">      13</span>              :   }</span>
+<span id="L14"><span class="lineNum">      14</span>              : </span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">           1 :   Future&lt;Map&lt;String, dynamic&gt;&gt; httpGet(String path) async {</span></span>
+<span id="L16"><span class="lineNum">      16</span>              :     try {</span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           2 :       final resp = await _dio.get(path);</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">           1 :       return resp.data;</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           1 :     } on DioException catch (e) {</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           2 :       throw HttpException('Error get $e');</span></span>
+<span id="L21"><span class="lineNum">      21</span>              :     }</span>
+<span id="L22"><span class="lineNum">      22</span>              :   }</span>
+<span id="L23"><span class="lineNum">      23</span>              : }</span>
         </pre>
               </td>
             </tr>

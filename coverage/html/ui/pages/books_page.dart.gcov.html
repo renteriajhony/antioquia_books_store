@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">8.3&nbsp;%</td>
-            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryLo">6.2&nbsp;%</td>
+            <td class="headerCovTableEntry">16</td>
             <td class="headerCovTableEntry">1</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-10-21 14:09:04</td>
+            <td class="headerValue">2024-10-21 17:04:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -73,29 +73,33 @@
 <span id="L11"><span class="lineNum">      11</span> <span class="tlaUNC">           0 :     final booksProvider = Provider.of&lt;BooksProvider&gt;(context, listen: true);</span></span>
 <span id="L12"><span class="lineNum">      12</span> <span class="tlaUNC">           0 :     return Scaffold(</span></span>
 <span id="L13"><span class="lineNum">      13</span> <span class="tlaUNC">           0 :       body: Padding(</span></span>
-<span id="L14"><span class="lineNum">      14</span>              :         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),</span>
-<span id="L15"><span class="lineNum">      15</span> <span class="tlaUNC">           0 :         child: GridView.builder(</span></span>
-<span id="L16"><span class="lineNum">      16</span> <span class="tlaUNC">           0 :           controller: booksProvider.scrollController,</span></span>
-<span id="L17"><span class="lineNum">      17</span>              :           itemCount:</span>
-<span id="L18"><span class="lineNum">      18</span> <span class="tlaUNC">           0 :               booksProvider.books.length + (booksProvider.hasMorePages ? 1 : 0),</span></span>
-<span id="L19"><span class="lineNum">      19</span> <span class="tlaUNC">           0 :           itemBuilder: (context, index) {</span></span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaUNC">           0 :             if (index == booksProvider.books.length ||</span></span>
-<span id="L21"><span class="lineNum">      21</span> <span class="tlaUNC">           0 :                 (booksProvider.isLoading &amp;&amp; booksProvider.books.isEmpty)) {</span></span>
-<span id="L22"><span class="lineNum">      22</span>              :               return const Center(child: CircularProgressIndicator());</span>
-<span id="L23"><span class="lineNum">      23</span>              :             }</span>
-<span id="L24"><span class="lineNum">      24</span> <span class="tlaUNC">           0 :             return BookCover(book: booksProvider.books[index]);</span></span>
-<span id="L25"><span class="lineNum">      25</span>              :           },</span>
-<span id="L26"><span class="lineNum">      26</span>              :           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(</span>
-<span id="L27"><span class="lineNum">      27</span>              :             crossAxisCount: 3,</span>
-<span id="L28"><span class="lineNum">      28</span>              :             childAspectRatio: 2 / 3,</span>
-<span id="L29"><span class="lineNum">      29</span>              :             crossAxisSpacing: 10,</span>
-<span id="L30"><span class="lineNum">      30</span>              :             mainAxisSpacing: 10,</span>
-<span id="L31"><span class="lineNum">      31</span>              :           ),</span>
-<span id="L32"><span class="lineNum">      32</span>              :         ),</span>
-<span id="L33"><span class="lineNum">      33</span>              :       ),</span>
-<span id="L34"><span class="lineNum">      34</span>              :     );</span>
-<span id="L35"><span class="lineNum">      35</span>              :   }</span>
-<span id="L36"><span class="lineNum">      36</span>              : }</span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaUNC">           0 :         padding: EdgeInsets.symmetric(</span></span>
+<span id="L15"><span class="lineNum">      15</span>              :             horizontal: DimensionsDoubleApp.twelveD,</span>
+<span id="L16"><span class="lineNum">      16</span>              :             vertical: DimensionsDoubleApp.tenD),</span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaUNC">           0 :         child: GridView.builder(</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaUNC">           0 :           controller: booksProvider.scrollController,</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaUNC">           0 :           itemCount: booksProvider.books.length +</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaUNC">           0 :               (booksProvider.hasMorePages</span></span>
+<span id="L21"><span class="lineNum">      21</span>              :                   ? DimensionsIntApp.oneD</span>
+<span id="L22"><span class="lineNum">      22</span>              :                   : DimensionsIntApp.ceroD),</span>
+<span id="L23"><span class="lineNum">      23</span> <span class="tlaUNC">           0 :           itemBuilder: (context, index) {</span></span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaUNC">           0 :             if (index == booksProvider.books.length ||</span></span>
+<span id="L25"><span class="lineNum">      25</span> <span class="tlaUNC">           0 :                 (booksProvider.isLoading &amp;&amp; booksProvider.books.isEmpty)) {</span></span>
+<span id="L26"><span class="lineNum">      26</span>              :               return const Center(child: CircularProgressIndicator());</span>
+<span id="L27"><span class="lineNum">      27</span>              :             }</span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaUNC">           0 :             return BookCover(book: booksProvider.books[index]);</span></span>
+<span id="L29"><span class="lineNum">      29</span>              :           },</span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaUNC">           0 :           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(</span></span>
+<span id="L31"><span class="lineNum">      31</span>              :             crossAxisCount: DimensionsIntApp.threeD,</span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaUNC">           0 :             childAspectRatio: DimensionsIntApp.twoD / DimensionsIntApp.threeD,</span></span>
+<span id="L33"><span class="lineNum">      33</span>              :             crossAxisSpacing: DimensionsDoubleApp.tenD,</span>
+<span id="L34"><span class="lineNum">      34</span>              :             mainAxisSpacing: DimensionsDoubleApp.tenD,</span>
+<span id="L35"><span class="lineNum">      35</span>              :           ),</span>
+<span id="L36"><span class="lineNum">      36</span>              :         ),</span>
+<span id="L37"><span class="lineNum">      37</span>              :       ),</span>
+<span id="L38"><span class="lineNum">      38</span>              :     );</span>
+<span id="L39"><span class="lineNum">      39</span>              :   }</span>
+<span id="L40"><span class="lineNum">      40</span>              : }</span>
         </pre>
               </td>
             </tr>
