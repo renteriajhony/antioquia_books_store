@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../antioquia_bookstore.dart';
 
-
 class InitialPage extends StatelessWidget {
   const InitialPage({super.key});
 
@@ -33,12 +32,12 @@ class InitialPage extends StatelessWidget {
                           ? Container(
                               width: double.infinity,
                               height: double.infinity,
-                              alignment: Alignment.center,
+                              alignment: Alignment.topCenter,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Image.asset(
-                                    'assets/nada.png',
+                                    'assets/nada2.png',
                                     width: double.infinity,
                                   ),
                                   const SizedBox(
