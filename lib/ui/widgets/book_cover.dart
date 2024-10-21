@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../antioquia_bookstore.dart';
 
@@ -12,10 +13,12 @@ class BookCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MainProvider mainProvider =
+        Provider.of<MainProvider>(context, listen: true);
     return GestureDetector(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        color: Colors.black.withOpacity(0.05),
+        color: mainProvider.isDark ? Colors.white12 : Colors.black12,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

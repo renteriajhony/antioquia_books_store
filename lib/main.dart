@@ -1,10 +1,6 @@
+import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:antioquia_bookstore/api/store_api.dart';
-
-import 'providers/books_provider.dart';
-import 'ui/pages/initial_page.dart';
 
 void main() {
   StoreApi storeApi = StoreApi();
@@ -20,6 +16,7 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(lazy: false, create: (_) => BooksProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => MainProvider()),
       ],
       child: const MyApp(),
     );
@@ -31,12 +28,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MainProvider mainProvider =
+        Provider.of<MainProvider>(context, listen: true);
+
+    final ThemeData themeData = ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.blue,
+        brightness: mainProvider.isDark ? Brightness.dark : Brightness.light);
+
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
-        useMaterial3: true,
-      ),
+      theme: themeData,
       home: const InitialPage(),
     );
   }

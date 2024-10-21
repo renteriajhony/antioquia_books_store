@@ -117,8 +117,10 @@ class BookInfo extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     text: 'Descripción: ',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyMedium?.color,
+                    ),
                     children: <TextSpan>[
                       TextSpan(
                           text: bookDetailResponse.desc ?? '',
@@ -130,11 +132,13 @@ class BookInfo extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   text: 'Url: ',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: bookDetailResponse.url ?? '',
+                      text: bookDetailResponse.url ?? 'Nada',
                       style: const TextStyle(color: Colors.blue),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {

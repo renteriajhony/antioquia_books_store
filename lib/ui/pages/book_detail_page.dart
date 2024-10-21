@@ -12,6 +12,9 @@ class BookDetailPage extends StatelessWidget {
     Provider.of<BooksProvider>(context, listen: false)
         .getBookDetail(book.isbn13);
 
+    final MainProvider mainProvider =
+        Provider.of<MainProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalles del libro'),
@@ -26,7 +29,7 @@ class BookDetailPage extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 300,
-                color: Colors.black12,
+                color: mainProvider.isDark ? Colors.white12 : Colors.black12,
                 child: book.image.contains('http')
                     ? Image.network(book.image)
                     : const SizedBox(),

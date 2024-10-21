@@ -1,3 +1,4 @@
+import 'package:antioquia_bookstore/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,8 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    final MainProvider mainProvider =
+        Provider.of<MainProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SearchAnchor(
@@ -38,14 +41,15 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               Tooltip(
                 message: 'Search',
                 child: IconButton(
-                  isSelected: false,
+                  isSelected: mainProvider.isDark,
                   onPressed: () {
                     setState(() {
-                      _onSearch(controller.text);
+                      // _onSearch(controller.text);
+                      mainProvider.toggleTheme();
                     });
                   },
-                  icon: const Icon(Icons.send_outlined),
-                  selectedIcon: const Icon(Icons.send_outlined),
+                  icon: const Icon(Icons.wb_sunny_outlined),
+                  selectedIcon: const Icon(Icons.brightness_2_outlined),
                 ),
               )
             ],
