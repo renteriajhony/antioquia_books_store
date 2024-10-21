@@ -1,5 +1,6 @@
 import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -35,6 +36,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: Colors.blue,
         brightness: mainProvider.isDark ? Brightness.dark : Brightness.light);
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
     return MaterialApp(
       title: 'Flutter Demo',

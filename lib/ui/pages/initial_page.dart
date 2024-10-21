@@ -9,8 +9,7 @@ class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context, listen: true);
-    final MainProvider mainProvider =
-        Provider.of<MainProvider>(context, listen: false);
+    final mainProvider = Provider.of<MainProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Libreria Antioquia'),
@@ -33,29 +32,7 @@ class InitialPage extends StatelessWidget {
                           ),
                         )
                       : booksProvider.books.isEmpty
-                          ? Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              alignment: Alignment.topCenter,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Image.asset(
-                                    'assets/nada2.png',
-                                    width: double.infinity,
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text(
-                                    'No se encontraron libros',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
-                            )
+                          ? const Blank(key: Key('blank_page'),)
                           : const BooksPage()
                 ],
               ),

@@ -18,7 +18,10 @@ class BookCover extends StatelessWidget {
     return GestureDetector(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        color: mainProvider.isDark ? Colors.white12 : Colors.black12,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: mainProvider.isDark ? Colors.white12 : Colors.black12,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

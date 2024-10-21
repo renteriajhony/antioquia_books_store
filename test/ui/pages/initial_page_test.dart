@@ -15,11 +15,9 @@ void main() {
   late MockMainProvider mockMainProvider;
   late MockBooksProvider mockBooksProvider;
   late MockDio mockDio;
-  late StoreApi storeApi;
   late BaseOptions mockOptions;
 
   setUpAll(() {
-    storeApi = StoreApi();
     mockDio = MockDio();
     mockOptions = BaseOptions();
     when(mockDio.options).thenReturn(mockOptions);
@@ -28,14 +26,29 @@ void main() {
   });
 
   Widget createWidgetUnderTest() {
-    return ChangeNotifierProvider<MockMainProvider>.value(
-      value: mockMainProvider,
-      child: ChangeNotifierProvider<BooksProvider>.value(
-        value: mockBooksProvider,
-        child: const MaterialApp(
-          home: InitialPage(),
-        ),
+    return MultiProvider(
+      providers: [
+       ChangeNotifierProvider(lazy: false, create: (_) => BooksProvider()),
+        ChangeNotifierProvider(lazy: false, create: (_) => MainProvider()),
+      ],
+      child: const MaterialApp(
+        home: InitialPage(),
       ),
     );
   }
+
+  testWidgets('Shows CircularProgressIndicator when loading',
+      (WidgetTester tester) async {
+    // Simula que el proveedor está cargando y no tiene libros
+    when(mockMainProvider.isDark).thenReturn(false);
+    when(mockBooksProvider.isLoading).thenReturn(true);
+    when(mockBooksProvider.books).thenReturn([]);
+
+    // Renderiza el widget
+    await tester.pumpWidget(createWidgetUnderTest());
+
+    // Verifica que se muestre el indicador de carga
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.text('No se encontraron libros'), findsNothing);
+  });
 }

@@ -29,7 +29,10 @@ class BookDetailPage extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 300,
-                color: mainProvider.isDark ? Colors.white12 : Colors.black12,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: mainProvider.isDark ? Colors.white12 : Colors.black12,
+                ),
                 child: book.image.contains('http')
                     ? Image.network(book.image)
                     : const SizedBox(),

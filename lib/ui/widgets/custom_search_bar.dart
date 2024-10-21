@@ -1,4 +1,3 @@
-import 'package:antioquia_bookstore/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +42,6 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                   isSelected: widget.mainProvider.isDark,
                   onPressed: () {
                     setState(() {
-                      // _onSearch(controller.text);
                       widget.mainProvider.toggleTheme();
                     });
                   },
