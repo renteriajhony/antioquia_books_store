@@ -9,6 +9,8 @@ class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context, listen: true);
+    final MainProvider mainProvider =
+        Provider.of<MainProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Libreria Antioquia'),
@@ -17,7 +19,9 @@ class InitialPage extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            const CustomSearchBar(),
+            CustomSearchBar(
+              mainProvider: mainProvider,
+            ),
             Expanded(
               child: PageView(
                 scrollDirection: Axis.vertical,

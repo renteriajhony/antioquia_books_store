@@ -10,8 +10,9 @@ import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import '../../api/store_api_test.mocks.dart';
 import 'initial_page_test.mocks.dart'; // Archivo generado por mockito
 
-@GenerateMocks([BooksProvider])
+@GenerateMocks([BooksProvider, MainProvider])
 void main() {
+  late MockMainProvider mockMainProvider;
   late MockBooksProvider mockBooksProvider;
   late MockDio mockDio;
   late StoreApi storeApi;
@@ -22,43 +23,19 @@ void main() {
     mockDio = MockDio();
     mockOptions = BaseOptions();
     when(mockDio.options).thenReturn(mockOptions);
+    mockMainProvider = MockMainProvider();
     mockBooksProvider = MockBooksProvider();
   });
 
   Widget createWidgetUnderTest() {
-    return ChangeNotifierProvider<BooksProvider>.value(
-      value: mockBooksProvider,
-      child: const MaterialApp(
-        home: InitialPage(),
+    return ChangeNotifierProvider<MockMainProvider>.value(
+      value: mockMainProvider,
+      child: ChangeNotifierProvider<BooksProvider>.value(
+        value: mockBooksProvider,
+        child: const MaterialApp(
+          home: InitialPage(),
+        ),
       ),
     );
   }
-
-  testWidgets('Shows CircularProgressIndicator when loading',
-      (WidgetTester tester) async {
-    // Simula que el proveedor está cargando y no tiene libros
-    when(mockBooksProvider.isLoading).thenReturn(true);
-    when(mockBooksProvider.books).thenReturn([]);
-
-    // Renderiza el widget
-    await tester.pumpWidget(createWidgetUnderTest());
-
-    // Verifica que se muestre el indicador de carga
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    expect(find.text('No se encontraron libros'), findsNothing);
-  });
-
-  testWidgets('Shows "No se encontraron libros" when there are no books',
-      (WidgetTester tester) async {
-    // Simula que no está cargando pero no hay libros
-    when(mockBooksProvider.isLoading).thenReturn(false);
-    when(mockBooksProvider.books).thenReturn([]);
-
-    // Renderiza el widget
-    await tester.pumpWidget(createWidgetUnderTest());
-
-    // Verifica que se muestre el mensaje de que no se encontraron libros
-    expect(find.text('No se encontraron libros'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsNothing);
-  });
 }

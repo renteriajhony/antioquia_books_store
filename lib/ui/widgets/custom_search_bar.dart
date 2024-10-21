@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import '../../antioquia_bookstore.dart';
 
 class CustomSearchBar extends StatefulWidget {
-  const CustomSearchBar({super.key});
+  const CustomSearchBar({super.key, required this.mainProvider});
+  final MainProvider mainProvider;
 
   @override
   State<CustomSearchBar> createState() => _CustomSearchBarState();
@@ -16,8 +17,6 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    final MainProvider mainProvider =
-        Provider.of<MainProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SearchAnchor(
@@ -41,11 +40,11 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               Tooltip(
                 message: 'Search',
                 child: IconButton(
-                  isSelected: mainProvider.isDark,
+                  isSelected: widget.mainProvider.isDark,
                   onPressed: () {
                     setState(() {
                       // _onSearch(controller.text);
-                      mainProvider.toggleTheme();
+                      widget.mainProvider.toggleTheme();
                     });
                   },
                   icon: const Icon(Icons.wb_sunny_outlined),

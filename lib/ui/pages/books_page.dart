@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../antioquia_bookstore.dart';
 
-
 class BooksPage extends StatelessWidget {
   const BooksPage({super.key});
 
@@ -20,10 +19,7 @@ class BooksPage extends StatelessWidget {
           itemBuilder: (context, index) {
             if (index == booksProvider.books.length ||
                 (booksProvider.isLoading && booksProvider.books.isEmpty)) {
-              return const Center(
-                  child: CircularProgressIndicator(
-                color: Colors.amber,
-              ));
+              return const Center(child: CircularProgressIndicator());
             }
             return BookCover(book: booksProvider.books[index]);
           },

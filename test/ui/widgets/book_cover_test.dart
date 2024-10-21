@@ -1,11 +1,19 @@
 import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:provider/provider.dart';
 
+import 'book_cover_test.mocks.dart';
+
+@GenerateMocks([MainProvider])
 void main() {
+  late MainProvider mockMainProvider;
   late Book book;
 
   setUp(() {
+    mockMainProvider = MockMainProvider();
     book = Book(
       title: 'Flutter Development',
       subtitle: 'An advanced guide',
@@ -18,9 +26,13 @@ void main() {
 
   testWidgets('BookCover shows book details correctly',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: BookCover(book: book),
+    when(mockMainProvider.isDark).thenReturn(false);
+    await tester.pumpWidget(ChangeNotifierProvider<MainProvider>.value(
+      value: mockMainProvider,
+      child: MaterialApp(
+        home: Scaffold(
+          body: BookCover(book: book),
+        ),
       ),
     ));
 

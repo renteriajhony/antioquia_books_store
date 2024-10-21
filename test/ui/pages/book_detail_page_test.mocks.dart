@@ -10,6 +10,7 @@ import 'package:antioquia_bookstore/models/book.dart' as _i5;
 import 'package:antioquia_bookstore/models/http/book_detail_response.dart'
     as _i3;
 import 'package:antioquia_bookstore/providers/books_provider.dart' as _i4;
+import 'package:antioquia_bookstore/providers/main_provider.dart' as _i8;
 import 'package:flutter/material.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -148,6 +149,72 @@ class MockBooksProvider extends _i1.Mock implements _i4.BooksProvider {
         Invocation.method(
           #removeListener,
           [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [MainProvider].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockMainProvider extends _i1.Mock implements _i8.MainProvider {
+  MockMainProvider() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get isDark => (super.noSuchMethod(
+        Invocation.getter(#isDark),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get hasListeners => (super.noSuchMethod(
+        Invocation.getter(#hasListeners),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void toggleTheme() => super.noSuchMethod(
+        Invocation.method(
+          #toggleTheme,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(_i7.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(_i7.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
         ),
         returnValueForMissingStub: null,
       );

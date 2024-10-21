@@ -1,4 +1,3 @@
-import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,12 +5,14 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart'; // Ajusta el import según tu estructura
 
+import 'package:antioquia_bookstore/antioquia_bookstore.dart';
+
 import '../../api/store_api_test.mocks.dart';
-import '../../mocks.dart';
 import 'book_detail_page_test.mocks.dart'; // Archivo generado por mockito
 
-@GenerateMocks([BooksProvider])
+@GenerateMocks([BooksProvider, MainProvider])
 void main() {
+  late MainProvider mockMainProvider;
   late MockBooksProvider mockBooksProvider;
   late MockDio mockDio;
   late StoreApi storeApi;
@@ -19,6 +20,7 @@ void main() {
   late Book mockBook;
 
   setUp(() {
+    mockMainProvider = MockMainProvider();
     mockBooksProvider = MockBooksProvider();
 
     // Datos de ejemplo para el libro
@@ -41,11 +43,14 @@ void main() {
   });
 
   Widget createWidgetUnderTest() {
-    return ChangeNotifierProvider<BooksProvider>.value(
-      value: mockBooksProvider,
-      child: MaterialApp(
-        home: BookDetailPage(
-          book: mockBook,
+    return ChangeNotifierProvider<MainProvider>.value(
+      value: mockMainProvider,
+      child: ChangeNotifierProvider<BooksProvider>.value(
+        value: mockBooksProvider,
+        child: MaterialApp(
+          home: BookDetailPage(
+            book: mockBook,
+          ),
         ),
       ),
     );
@@ -57,6 +62,7 @@ void main() {
     when(mockBooksProvider.getBookDetail(mockBook.isbn13))
         .thenAnswer((_) async => {});
     when(mockBooksProvider.isLoading).thenReturn(true);
+    when(mockMainProvider.isDark).thenReturn(false);
 
     // Renderiza el widget
     await tester.pumpWidget(createWidgetUnderTest());
@@ -75,6 +81,7 @@ void main() {
     when(mockBooksProvider.getBookDetail(mockBook.isbn13))
         .thenAnswer((_) async => {});
     when(mockBooksProvider.isLoading).thenReturn(true);
+    when(mockMainProvider.isDark).thenReturn(false);
     // Renderiza el widget
     await tester.pumpWidget(createWidgetUnderTest());
 
