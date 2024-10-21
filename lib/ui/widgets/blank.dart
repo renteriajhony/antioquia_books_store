@@ -1,3 +1,4 @@
+import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import 'package:flutter/material.dart';
 
 class Blank extends StatelessWidget {
@@ -13,18 +14,20 @@ class Blank extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-            flex: 1,
+            flex: DimensionsIntApp.oneD,
             child: Image.asset(
-              'assets/nada2.png',
+              UiLabelsApp.labelsApp['BlankPage']['image'],
               width: double.infinity,
             ),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: DimensionsDoubleApp.tenD,
           ),
-          const Text(
-            'No se encontraron libros',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Text(
+            UiLabelsApp.labelsApp['BlankPage']['title'],
+            style: TextStyle(
+                fontSize: DimensionsDoubleApp.twentyD,
+                fontWeight: FontWeight.bold),
           ),
           const Spacer()
         ],

@@ -1,9 +1,6 @@
 import 'dart:developer';
 
-import 'package:antioquia_bookstore/api/store_api.dart';
-import 'package:antioquia_bookstore/models/book.dart';
-import 'package:antioquia_bookstore/models/http/book_detail_response.dart';
-import 'package:antioquia_bookstore/models/http/books_response.dart';
+import 'package:antioquia_bookstore/antioquia_bookstore.dart';
 import 'package:flutter/material.dart';
 
 class BooksProvider extends ChangeNotifier {
@@ -12,7 +9,7 @@ class BooksProvider extends ChangeNotifier {
   List<Book> _books = [];
   bool _isLoading = false;
   int _currentPage = 1;
-  String _currentSearch = 'new';
+  String _currentSearch = ConstantApp.baseSearch;
   int _total = 0;
 
   List<Book> get books => _books;
@@ -28,7 +25,7 @@ class BooksProvider extends ChangeNotifier {
     getBooks();
   }
 
-  Future<void> getBooks({String search = 'new'}) async {
+  Future<void> getBooks({String search = ConstantApp.baseSearch}) async {
     if (_isLoading) return;
     _isLoading = true;
     notifyListeners();
@@ -39,9 +36,9 @@ class BooksProvider extends ChangeNotifier {
       _currentPage = 1;
     }
 
-    String path = (search == '' || search == 'new')
-        ? 'new'
-        : 'search/$search/$_currentPage';
+    String path = (search == '' || search == ConstantApp.baseSearch)
+        ? ConstantApp.baseSearch
+        : '${ConstantApp.apiTag}/$search/$_currentPage';
 
     try {
       final resp = await StoreApi().httpGet(path);

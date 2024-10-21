@@ -51,6 +51,7 @@ Por favor indicar la url del repositorio Git para la revisión de esta.
 
 
 ## Run App
+create the ```.env``` file and use the ```.env.dev``` reference file to populate the variables with production data.
 ```bash
 flutter run
 ```

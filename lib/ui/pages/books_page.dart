@@ -11,11 +11,15 @@ class BooksPage extends StatelessWidget {
     final booksProvider = Provider.of<BooksProvider>(context, listen: true);
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: DimensionsDoubleApp.twelveD,
+            vertical: DimensionsDoubleApp.tenD),
         child: GridView.builder(
           controller: booksProvider.scrollController,
-          itemCount:
-              booksProvider.books.length + (booksProvider.hasMorePages ? 1 : 0),
+          itemCount: booksProvider.books.length +
+              (booksProvider.hasMorePages
+                  ? DimensionsIntApp.oneD
+                  : DimensionsIntApp.ceroD),
           itemBuilder: (context, index) {
             if (index == booksProvider.books.length ||
                 (booksProvider.isLoading && booksProvider.books.isEmpty)) {
@@ -23,11 +27,11 @@ class BooksPage extends StatelessWidget {
             }
             return BookCover(book: booksProvider.books[index]);
           },
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 2 / 3,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: DimensionsIntApp.threeD,
+            childAspectRatio: DimensionsIntApp.twoD / DimensionsIntApp.threeD,
+            crossAxisSpacing: DimensionsDoubleApp.tenD,
+            mainAxisSpacing: DimensionsDoubleApp.tenD,
           ),
         ),
       ),

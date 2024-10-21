@@ -17,10 +17,12 @@ class BookDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalles del libro'),
+        title: Text(UiLabelsApp.labelsApp['BookDetailPage']['title']),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: DimensionsDoubleApp.twentyD,
+            vertical: DimensionsDoubleApp.tenD),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,36 +30,40 @@ class BookDetailPage extends StatelessWidget {
               tag: book.isbn13,
               child: Container(
                 width: double.infinity,
-                height: 300,
+                height: DimensionsDoubleApp.threeHundredD,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: mainProvider.isDark ? Colors.white12 : Colors.black12,
+                  borderRadius:
+                      BorderRadius.circular(DimensionsDoubleApp.twentyD),
+                  color: mainProvider.isDark
+                      ? ColorsApp.coverDark
+                      : ColorsApp.coverLigth,
                 ),
-                child: book.image.contains('http')
+                child: book.image.contains(
+                        UiLabelsApp.labelsApp['BookDetailPage']['http'])
                     ? Image.network(book.image)
                     : const SizedBox(),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: DimensionsDoubleApp.twentyD),
             Text(
               book.title,
-              maxLines: 3,
+              maxLines: DimensionsIntApp.threeD,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w900,
-                fontSize: 25,
+                fontSize: DimensionsDoubleApp.twentyFiveD,
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: DimensionsDoubleApp.twentyD),
             Text(
               book.subtitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w200,
-                fontSize: 20,
+                fontSize: DimensionsDoubleApp.twentyD,
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: DimensionsDoubleApp.twentyD),
             const BookInfo(),
           ],
         ),

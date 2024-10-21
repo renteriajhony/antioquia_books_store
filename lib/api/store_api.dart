@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class StoreApi {
   static late final Dio _dio;
 
   void configureDio({Dio? dio}) {
     _dio = dio ?? Dio();
-    _dio.options.baseUrl = 'https://api.itbook.store/1.0/';
+    _dio.options.baseUrl = dotenv.env['BASE_URL'] ?? '';
     _dio.options.headers = {};
   }
 

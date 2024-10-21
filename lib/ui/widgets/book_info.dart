@@ -26,7 +26,7 @@ class BookInfo extends StatelessWidget {
               RichText(
                 key: const Key('rich_text_author'),
                 text: TextSpan(
-                  text: 'Autor: ',
+                  text: UiLabelsApp.labelsApp['BookInfo']['author'],
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
@@ -37,7 +37,7 @@ class BookInfo extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: 'Editorial: ',
+                  text: UiLabelsApp.labelsApp['BookInfo']['publisher'],
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
@@ -48,7 +48,7 @@ class BookInfo extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: 'Idioma: ',
+                  text: UiLabelsApp.labelsApp['BookInfo']['language'],
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
@@ -63,7 +63,7 @@ class BookInfo extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: 'Páginas: ',
+                        text: UiLabelsApp.labelsApp['BookInfo']['pages'],
                         style: DefaultTextStyle.of(context).style,
                         children: <TextSpan>[
                           TextSpan(
@@ -75,7 +75,7 @@ class BookInfo extends StatelessWidget {
                     ),
                     RichText(
                       text: TextSpan(
-                        text: 'Año: ',
+                        text: UiLabelsApp.labelsApp['BookInfo']['year'],
                         style: DefaultTextStyle.of(context).style,
                         children: <TextSpan>[
                           TextSpan(
@@ -87,7 +87,7 @@ class BookInfo extends StatelessWidget {
                     ),
                     RichText(
                       text: TextSpan(
-                        text: 'Clasificación: ',
+                        text: UiLabelsApp.labelsApp['BookInfo']['rating'],
                         style: DefaultTextStyle.of(context).style,
                         children: <TextSpan>[
                           TextSpan(
@@ -100,14 +100,14 @@ class BookInfo extends StatelessWidget {
                   ]),
               RichText(
                 text: TextSpan(
-                  text: 'Precio: ',
+                  text: UiLabelsApp.labelsApp['BookInfo']['price'],
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
                         text: bookDetailResponse.price ?? '',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.red,
+                          color: ColorsApp.highlight,
                         )),
                   ],
                 ),
@@ -116,7 +116,7 @@ class BookInfo extends StatelessWidget {
               if (bookDetailResponse.desc != null)
                 RichText(
                   text: TextSpan(
-                    text: 'Descripción: ',
+                    text: UiLabelsApp.labelsApp['BookInfo']['desc'],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).textTheme.bodyMedium?.color,
@@ -128,18 +128,18 @@ class BookInfo extends StatelessWidget {
                     ],
                   ),
                 ),
-              const SizedBox(height: 10),
+              SizedBox(height: DimensionsDoubleApp.tenD),
               RichText(
                 text: TextSpan(
-                  text: 'Url: ',
+                  text: UiLabelsApp.labelsApp['BookInfo']['url'],
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text: bookDetailResponse.url ?? 'Nada',
-                      style: const TextStyle(color: Colors.blue),
+                      text: bookDetailResponse.url ?? '',
+                      style: const TextStyle(color: ColorsApp.colorSchemeSeed),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           String url = bookDetailResponse.url ?? '';

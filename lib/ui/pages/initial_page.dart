@@ -12,7 +12,7 @@ class InitialPage extends StatelessWidget {
     final mainProvider = Provider.of<MainProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Libreria Antioquia'),
+        title: Text(UiLabelsApp.labelsApp['initialPage']['title']),
       ),
       body: SizedBox(
         width: double.infinity,
@@ -27,12 +27,12 @@ class InitialPage extends StatelessWidget {
                 children: [
                   (booksProvider.isLoading && booksProvider.books.isEmpty)
                       ? const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.red,
-                          ),
+                          child: CircularProgressIndicator(),
                         )
                       : booksProvider.books.isEmpty
-                          ? const Blank(key: Key('blank_page'),)
+                          ? const Blank(
+                              key: Key('blank_page'),
+                            )
                           : const BooksPage()
                 ],
               ),

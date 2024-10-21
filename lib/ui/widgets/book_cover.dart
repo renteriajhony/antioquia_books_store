@@ -17,9 +17,11 @@ class BookCover extends StatelessWidget {
         Provider.of<MainProvider>(context, listen: true);
     return GestureDetector(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        padding: EdgeInsets.symmetric(
+            horizontal: DimensionsDoubleApp.fiveD,
+            vertical: DimensionsDoubleApp.fiveD),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(DimensionsDoubleApp.eightD),
           color: mainProvider.isDark ? Colors.white12 : Colors.black12,
         ),
         child: Column(
@@ -28,7 +30,8 @@ class BookCover extends StatelessWidget {
           children: [
             Hero(
               tag: book.isbn13,
-              child: book.image.contains('http')
+              child: book.image
+                      .contains(UiLabelsApp.labelsApp['BookCover']['http'])
                   ? Image.network(
                       alignment: Alignment.topLeft,
                       width: double.infinity,
@@ -37,23 +40,23 @@ class BookCover extends StatelessWidget {
                   : const SizedBox(),
             ),
             SizedBox(
-              width: 150,
+              width: DimensionsDoubleApp.oneHundredFiftyD,
               child: Text(
                 book.title,
-                maxLines: 2,
+                maxLines: DimensionsIntApp.twoD,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 10,
+                  fontSize: DimensionsDoubleApp.tenD,
                 ),
               ),
             ),
             Text(
-              'Precio: ${book.price}',
-              maxLines: 1,
-              style: const TextStyle(
+              '${UiLabelsApp.labelsApp['BookCover']['price']} ${book.price}',
+              maxLines: DimensionsIntApp.oneD,
+              style: TextStyle(
                 fontWeight: FontWeight.w500,
-                fontSize: 10,
+                fontSize: DimensionsDoubleApp.tenD,
               ),
             ),
           ],
