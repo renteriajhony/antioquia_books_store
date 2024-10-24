@@ -20,11 +20,17 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
       padding: const EdgeInsets.all(8.0),
       child: SearchAnchor(
         isFullScreen: false,
+        viewConstraints: const BoxConstraints(
+          minHeight: kToolbarHeight,
+          maxHeight: kToolbarHeight * 6,
+        ),
         builder: (BuildContext context, SearchController controller) {
           return SearchBar(
             controller: controller,
-            padding: const WidgetStatePropertyAll<EdgeInsets>(
-                EdgeInsets.symmetric(horizontal: 16.0)),
+            padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry?>(
+                (states) {
+              return const EdgeInsets.symmetric(horizontal: 16.0);
+            }),
             onTap: () {
               controller.openView();
             },
